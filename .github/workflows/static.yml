@@ -1,43 +1,24 @@
-  1# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
-
-on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
-jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+            - name: Thiết lập môi trường Node.js
+  sử dụng: actions/setup-node@v3.9.1
+  với:
+    # Đặt luôn xác thực trong npmrc.
+    always-auth: # tùy chọn, mặc định là false
+    # Thông số kỹ thuật của phiên bản sẽ sử dụng. Ví dụ: 12.x, 10.15.1, >=10.15.0.
+    node-version: # tùy chọn
+    # Tệp chứa thông số kỹ thuật của phiên bản cần sử dụng. Ví dụ: .nvmrc, .node-version, .tool-versions.
+    node-version-file: # tùy chọn
+    # Kiến trúc đích để Node sử dụng. Ví dụ: x86, x64. Sẽ sử dụng kiến ​​trúc hệ thống theo mặc định.
+    kiến trúc: # tùy chọn
+    # Đặt tùy chọn này nếu bạn muốn hành động kiểm tra phiên bản mới nhất có sẵn đáp ứng thông số kỹ thuật của phiên bản.
+    check-latest: # tùy chọn
+    # Tùy chọn đăng ký để thiết lập xác thực. Sẽ thiết lập đăng ký trong tệp .npmrc và .yarnrc cấp dự án, và thiết lập xác thực để đọc từ env.NODE_AUTH_TOKEN.
+    registry-url: # tùy chọn
+    # Phạm vi tùy chọn để xác thực với các sổ đăng ký được phân vùng. Sẽ được chuyển về cho chủ sở hữu kho lưu trữ khi sử dụng sổ đăng ký GitHub Packages (https://npm.pkg.github.com/).
+    phạm vi: # tùy chọn
+    # Được sử dụng để lấy dữ liệu phân phối node từ node-versions. Vì có giá trị mặc định, giá trị này thường không được người dùng cung cấp. Khi chạy hành động này trên github.com, giá trị mặc định là đủ. Khi chạy trên GHES, bạn có thể truyền mã thông báo truy cập cá nhân cho github.com nếu gặp phải giới hạn tốc độ.
+    token: # tùy chọn, mặc định là ${{ github.server_url == 'https://github.com' && github.token || '' }}
+    # Được sử dụng để chỉ định trình quản lý gói để lưu trữ đệm trong thư mục mặc định. Các giá trị được hỗ trợ: npm, yarn, pnpm.
+    bộ nhớ đệm: # tùy chọn
+    # Được sử dụng để chỉ định đường dẫn đến tệp phụ thuộc: package-lock.json, yarn.lock, v.v. Hỗ trợ ký tự đại diện hoặc danh sách tên tệp để lưu trữ đệm nhiều phụ thuộc.
+    cache-dependency-path: # tùy chọn
+          
